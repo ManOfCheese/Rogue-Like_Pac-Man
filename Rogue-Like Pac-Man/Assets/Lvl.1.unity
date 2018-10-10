@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 40670408}
   - component: {fileID: 40670407}
   - component: {fileID: 40670406}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Pinky
   m_TagString: Ghost
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 175911770}
   - component: {fileID: 175911769}
   - component: {fileID: 175911768}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Blinky
   m_TagString: Ghost
   m_Icon: {fileID: 0}
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 379770551}
   - component: {fileID: 379770550}
   - component: {fileID: 379770549}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Inky
   m_TagString: Ghost
   m_Icon: {fileID: 0}
@@ -757,6 +757,7 @@ GameObject:
   - component: {fileID: 800728289}
   - component: {fileID: 800728288}
   - component: {fileID: 800728291}
+  - component: {fileID: 800728292}
   m_Layer: 0
   m_Name: PacMan
   m_TagString: Untagged
@@ -866,6 +867,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13, y: 0.13}
   m_EdgeRadius: 0
+--- !u!114 &800728292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 800728287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5484eb0014e0470429a3b4367a211c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 1123548758}
+  baseSpeed: 2
 --- !u!1 &861905170
 GameObject:
   m_ObjectHideFlags: 0
@@ -5729,7 +5743,7 @@ GameObject:
   - component: {fileID: 1761785077}
   - component: {fileID: 1761785076}
   - component: {fileID: 1761785079}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Clyde
   m_TagString: Ghost
   m_Icon: {fileID: 0}

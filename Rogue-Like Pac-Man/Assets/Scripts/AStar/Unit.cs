@@ -13,6 +13,10 @@ public class Unit : MonoBehaviour {
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);  //Request a path from the PathRequestManager.
     }
 
+    private void Update() {
+        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);  //Request a path from the PathRequestManager.
+    }
+
     //When a path is returned from the PathRequestManager.
     public void OnPathFound(Vector3[] newPath, bool pathSuccesful) {  
         if (pathSuccesful) {               //If a path has been found.
