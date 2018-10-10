@@ -122,7 +122,6 @@ GameObject:
   m_Component:
   - component: {fileID: 40670409}
   - component: {fileID: 40670408}
-  - component: {fileID: 40670407}
   - component: {fileID: 40670406}
   m_Layer: 0
   m_Name: Pinky
@@ -144,31 +143,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 800728290}
   speed: 2
---- !u!61 &40670407
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 40670405}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.14}
-  m_EdgeRadius: 0
 --- !u!212 &40670408
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -291,7 +265,6 @@ GameObject:
   m_Component:
   - component: {fileID: 175911771}
   - component: {fileID: 175911770}
-  - component: {fileID: 175911769}
   - component: {fileID: 175911768}
   m_Layer: 0
   m_Name: Blinky
@@ -313,31 +286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 800728290}
   speed: 2
---- !u!61 &175911769
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 175911767}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.14}
-  m_EdgeRadius: 0
 --- !u!212 &175911770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -501,7 +449,6 @@ GameObject:
   m_Component:
   - component: {fileID: 379770552}
   - component: {fileID: 379770551}
-  - component: {fileID: 379770550}
   - component: {fileID: 379770549}
   m_Layer: 0
   m_Name: Inky
@@ -523,31 +470,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 800728290}
   speed: 2
---- !u!61 &379770550
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 379770548}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.14}
-  m_EdgeRadius: 0
 --- !u!212 &379770551
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -758,6 +680,7 @@ GameObject:
   - component: {fileID: 800728288}
   - component: {fileID: 800728291}
   - component: {fileID: 800728292}
+  - component: {fileID: 800728293}
   m_Layer: 0
   m_Name: PacMan
   m_TagString: Untagged
@@ -854,18 +777,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005, y: 0.005}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.15, y: 0.15}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13, y: 0.13}
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &800728292
 MonoBehaviour:
@@ -879,7 +802,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1123548758}
-  baseSpeed: 2
+  baseSpeed: 4
+--- !u!50 &800728293
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 800728287}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &861905170
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +941,7 @@ GameObject:
   - component: {fileID: 1123548759}
   - component: {fileID: 1123548758}
   - component: {fileID: 1123548761}
-  - component: {fileID: 1123548762}
+  - component: {fileID: 1123548760}
   m_Layer: 0
   m_Name: A*
   m_TagString: Untagged
@@ -1035,6 +978,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1123548760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123548757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70078f22118c2d40944317b6553c424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1123548761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,17 +998,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cb8dd449aa0aad428dfdda935ebf290, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1123548762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123548757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f70078f22118c2d40944317b6553c424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1431319104
@@ -5741,7 +5684,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1761785078}
   - component: {fileID: 1761785077}
-  - component: {fileID: 1761785076}
   - component: {fileID: 1761785079}
   m_Layer: 0
   m_Name: Clyde
@@ -5750,31 +5692,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1761785076
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1761785075}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.14}
-  m_EdgeRadius: 0
 --- !u!212 &1761785077
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -13,10 +13,6 @@ public class Unit : MonoBehaviour {
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);  //Request a path from the PathRequestManager.
     }
 
-    private void Update() {
-        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);  //Request a path from the PathRequestManager.
-    }
-
     //When a path is returned from the PathRequestManager.
     public void OnPathFound(Vector3[] newPath, bool pathSuccesful) {  
         if (pathSuccesful) {               //If a path has been found.
@@ -28,19 +24,21 @@ public class Unit : MonoBehaviour {
 
     //Follow the path.
     IEnumerator FollowPath() {
+        targetIndex = 0;
         Vector3 currentWaypoint = path[0];                  //The current waypoint we are moving towards, starting with the first one.
 
         while (true) {                                     //Enter a loop.
             if (transform.position == currentWaypoint) {   //If we are at the waypoint.
                 targetIndex++;                             //Add one to the targetIndex.
-                if (targetIndex >= path.Length) {          //If the targetIndex is more than or equal to the path length.
-                    yield break;                           //Were done here exit the coroutine.
+                if (targetIndex >= 1) {          //If the targetIndex is more than or equal to the path length.
+                    break;                                 //Were done here exit the coroutine.
                 }
                 currentWaypoint = path[targetIndex];       //Other set the waypoint to be the next waypoint in the path.
             }
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);  //Move towards the waypoint.
             yield return null;                                                                                      //Wait one frame and continue.
         }
+        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
     }
 
     //Draw the path in gizmos.

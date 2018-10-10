@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour {
     private Vector2 dir = new Vector2(1, 0);
     private Node currentNode;
     private float speed;
+    private Rigidbody2D rb;
 
     private void Awake() {
         speed = baseSpeed;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update() {
@@ -38,8 +40,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         transform.position += new Vector3(dir.x * (speed * Time.deltaTime), dir.y * (speed * Time.deltaTime), 0);
+        //rb.AddForce(dir * (speed * Time.deltaTime), ForceMode2D.Force);
 
-        currentNode = grid.NodeFromWorldPoint(transform.position);
+        /*currentNode = grid.NodeFromWorldPoint(transform.position);
         foreach (Node neighbor in grid.GetNeighbors(currentNode)) {
             if (new Vector2(currentNode.gridX + dir.x, currentNode.gridY + dir.y) == new Vector2(neighbor.gridX, neighbor.gridY) && !neighbor.walkable) {
                 speed = 0;
@@ -47,7 +50,11 @@ public class PlayerController : MonoBehaviour {
             else {
                 speed = baseSpeed;
             }
-        }
+        }*/
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        dir = new Vector2(0, 0);
     }
 
     /*private void OnTriggerEnter2D(Collider2D collision) {
