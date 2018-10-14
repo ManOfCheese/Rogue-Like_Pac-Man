@@ -7,14 +7,20 @@ public class PlayerController : MonoBehaviour {
     public Grid grid;
     public float baseSpeed;
 
-    private Vector2 dir = new Vector2(1, 0);
-    private Node currentNode;
+    private Vector2 dir = new Vector2(-1, 0);
     private float speed;
+    private Node nextNode;
+    private Node currentNode;
+    private Vector2 dest;
     private Rigidbody2D rb;
 
-    private void Awake() {
+    private void Start() {
+        transform.position = grid.NodeFromWorldPoint(transform.position).worldPos;
         speed = baseSpeed;
         rb = GetComponent<Rigidbody2D>();
+        currentNode = grid.NodeFromWorldPoint(transform.position);
+        dest = currentNode.worldPos;
+        nextNode = grid.grid[grid.NodeFromWorldPoint(transform.position).gridX + Mathf.RoundToInt(dir.x), grid.NodeFromWorldPoint(transform.position).gridY + Mathf.RoundToInt(dir.y)];
     }
 
     private void Update() {
@@ -39,28 +45,12 @@ public class PlayerController : MonoBehaviour {
             this.transform.localRotation = Quaternion.Euler(0, 0, 270);
         }
 
-        transform.position += new Vector3(dir.x * (speed * Time.deltaTime), dir.y * (speed * Time.deltaTime), 0);
-        //rb.AddForce(dir * (speed * Time.deltaTime), ForceMode2D.Force);
+        Vector2 p = Vector2.MoveTowards(transform.position, dest, speed * Time.deltaTime);
+        rb.MovePosition(p);
+        nextNode = grid.grid[grid.NodeFromWorldPoint(transform.position).gridX + Mathf.RoundToInt(dir.x), grid.NodeFromWorldPoint(transform.position).gridY + Mathf.RoundToInt(dir.y)];
 
-        /*currentNode = grid.NodeFromWorldPoint(transform.position);
-        foreach (Node neighbor in grid.GetNeighbors(currentNode)) {
-            if (new Vector2(currentNode.gridX + dir.x, currentNode.gridY + dir.y) == new Vector2(neighbor.gridX, neighbor.gridY) && !neighbor.walkable) {
-                speed = 0;
-            }
-            else {
-                speed = baseSpeed;
-            }
-        }*/
+        if (nextNode.walkable && (Vector2)nextNode.worldPos != dest) {
+            dest = nextNode.worldPos;
+        }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision) {
-        dir = new Vector2(0, 0);
-    }
-
-    /*private void OnTriggerEnter2D(Collider2D collision) {
-        speed = 0;
-    }
-    private void OnTriggerExit2D(Collider2D collision) {
-        speed = baseSpeed;
-    }*/
 }

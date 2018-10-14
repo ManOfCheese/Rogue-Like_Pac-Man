@@ -6,8 +6,8 @@ public class Unit : MonoBehaviour {
 
     public Transform target;  //The target to move towards.
     public float speed;       //Speed of movement, later multiplied by time.DeltaTime
-    Vector3[] path;   //The path in an array of Vector3's.
-    int targetIndex;  //The current index of the waypoint we are moving to towards.
+    Vector3[] path;           //The path in an array of Vector3's.
+    int targetIndex;          //The current index of the waypoint we are moving to towards.
 
     private void Start() {
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);  //Request a path from the PathRequestManager.
@@ -17,6 +17,10 @@ public class Unit : MonoBehaviour {
     public void OnPathFound(Vector3[] newPath, bool pathSuccesful) {  
         if (pathSuccesful) {               //If a path has been found.
             path = newPath;                //Set the current path to be the new found path.
+            StopCoroutine(FollowPath());   //Makes sure the coroutine isn't already running.
+            StartCoroutine(FollowPath());  //Run the follow path coroutine.
+        }
+        else {
             StopCoroutine(FollowPath());   //Makes sure the coroutine isn't already running.
             StartCoroutine(FollowPath());  //Run the follow path coroutine.
         }
@@ -30,15 +34,15 @@ public class Unit : MonoBehaviour {
         while (true) {                                     //Enter a loop.
             if (transform.position == currentWaypoint) {   //If we are at the waypoint.
                 targetIndex++;                             //Add one to the targetIndex.
-                if (targetIndex >= 1) {          //If the targetIndex is more than or equal to the path length.
-                    break;                                 //Were done here exit the coroutine.
+                if (targetIndex >= 1) {                    //If the targetIndex is more than or equal to one (meanig we took one step along the path)
+                    break;                                 //Exit the while loop
                 }
-                currentWaypoint = path[targetIndex];       //Other set the waypoint to be the next waypoint in the path.
+                currentWaypoint = path[targetIndex];       //Otherwise set the waypoint to be the next waypoint in the path.
             }
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);  //Move towards the waypoint.
             yield return null;                                                                                      //Wait one frame and continue.
         }
-        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);                           //Request a new path.
     }
 
     //Draw the path in gizmos.

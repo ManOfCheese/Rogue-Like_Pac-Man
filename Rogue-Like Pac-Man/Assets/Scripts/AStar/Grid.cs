@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour {
 
-    bool displayGridGizmos;           //When true only display path gizmos.
+    public bool displayGridGizmos;    //When true only display path gizmos.
     public LayerMask unwalkableMask;  //Mask that contains all objects that cannot be traversed.
     public Vector2 gridWorldSize;     //This the size of the grid in world space.
     public float nodeRadius;          //The radius of the node determines it's size.
-    private Node[,] grid;             //An array of all the nodes in the grid.
+    public Node[,] grid;             //An array of all the nodes in the grid.
 
     float nodeDiameter;               //Simply twice the radius, declared here for quick reusability in favour of multiplying nodeRadius each time.
     int gridSizeX, gridSizeY;         //Holds how many nodes fit in the grid on the x and y axes. 
@@ -80,12 +80,6 @@ public class Grid : MonoBehaviour {
             foreach (Node n in grid) {
                 Gizmos.color = (n.walkable) ? Color.white : Color.red;                              //If the node is walkable color it white, if it is not color it red.
                 Gizmos.DrawCube(n.worldPos, Vector3.one * (nodeDiameter - 0.1f));                   //Draw a cube one every node just smaller than the actual node so that they can be differentiated on the screen. 
-            }
-        }
-        if (grid != null) {
-            foreach (Node n in grid) {
-                Gizmos.color = (n.walkable) ? Color.white : Color.red;
-                Gizmos.DrawCube(n.worldPos, Vector3.one * (nodeDiameter - .1f));
             }
         }
     }
