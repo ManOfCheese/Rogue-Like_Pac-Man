@@ -64,6 +64,9 @@ TextureImporter:
     21300118: Spritesheet_Pacman_59
     21300120: Spritesheet_Pacman_60
     21300122: Spritesheet_Pacman_61
+    21300124: Spritesheet_Pacman_62
+    21300126: Spritesheet_Pacman_63
+    21300128: Spritesheet_Pacman_64
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1403,6 +1406,66 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d349b7c3f837ec3459a98ced833c656b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_Pacman_62
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2b7fab094d7f5146a12cda14d62618a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_Pacman_63
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed66d30c12df8f5488915843accb8271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_Pacman_64
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 15
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 697427f80d3528f429d80ef352c119fd
       vertices: []
       indices: 
       edges: []

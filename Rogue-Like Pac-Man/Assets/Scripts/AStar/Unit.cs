@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour {
 
+    public Pathfinding pathfinding;
+    private GameObject player;
     public Transform target;  //The target to move towards.
+    public Transform targetTransform;
     public float speed;       //Speed of movement, later multiplied by time.DeltaTime
     Vector3[] path;           //The path in an array of Vector3's.
     int targetIndex;          //The current index of the waypoint we are moving to towards.
 
     private void Start() {
+        player = GameObject.FindGameObjectWithTag("Player");
+        target.position = player.transform.position;
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);  //Request a path from the PathRequestManager.
+    }
+
+    private void OnEnable() {
+        PowerPellet.OnPowerPelletEaten += PowerPelletActive;
+    }
+
+    private void OnDisable() {
+        PowerPellet.OnPowerPelletEaten -= PowerPelletActive;
     }
 
     //When a path is returned from the PathRequestManager.
@@ -42,7 +55,7 @@ public class Unit : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);  //Move towards the waypoint.
             yield return null;                                                                                      //Wait one frame and continue.
         }
-        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);                           //Request a new path.
+        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);                                    //Request a new path.
     }
 
     //Draw the path in gizmos.
@@ -60,5 +73,10 @@ public class Unit : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public void PowerPelletActive() {
+        targetTransform.position = pathfinding.FindFurthestNode(player.transform.position).worldPos;
+        target = targetTransform;
     }
 }

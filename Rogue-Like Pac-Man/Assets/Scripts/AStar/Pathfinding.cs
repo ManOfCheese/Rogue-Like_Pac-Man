@@ -100,6 +100,21 @@ public class Pathfinding : MonoBehaviour {
         return waypoints.ToArray();                     //Return the waypoint list as an array.
     }
 
+    public Node FindFurthestNode(Vector3 playerTransform) {
+        Node furthestNode = grid.grid[1,1];
+
+        foreach (Node node in grid.grid) {
+            if (node.walkable) {
+                float distance = GetDistance(grid.NodeFromWorldPoint(playerTransform), node);
+                float furthestNodeDistance = GetDistance(grid.NodeFromWorldPoint(playerTransform), grid.NodeFromWorldPoint(furthestNode.worldPos));
+                if (distance >= furthestNodeDistance) {
+                    furthestNode = node;
+                }
+            }
+        }
+        return furthestNode;
+    }
+
     //Calculates distance between two nodes.
     private int GetDistance(Node nodeA, Node nodeB) {
         int distX = Mathf.Abs(nodeA.gridX - nodeB.gridX);  //Distance on the x axis is equal to nodaA - nodeB's grid position.
