@@ -5,17 +5,22 @@ using UnityEngine;
 public class Unit : MonoBehaviour {
 
     public Pathfinding pathfinding;
-    private GameObject player;
-    public Transform target;  //The target to move towards.
     public Transform targetTransform;
     public float speed;       //Speed of movement, later multiplied by time.DeltaTime
+    public int blueModeDur;
+
+    private Animator animator;
+    private GameObject player;
+    private Transform target;  //The target to move towards.
+
     Vector3[] path;           //The path in an array of Vector3's.
     int targetIndex;          //The current index of the waypoint we are moving to towards.
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
-        target.position = player.transform.position;
+        target = player.transform;
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);  //Request a path from the PathRequestManager.
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable() {
@@ -53,6 +58,10 @@ public class Unit : MonoBehaviour {
                 currentWaypoint = path[targetIndex];       //Otherwise set the waypoint to be the next waypoint in the path.
             }
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);  //Move towards the waypoint.
+            if ((transform.position - currentWaypoint).normalized == new Vector3(-1, 0, 0)) { animator.SetInteger("Dir", 0); }
+            else if ((transform.position - currentWaypoint).normalized == new Vector3(0, 1, 0)) { animator.SetInteger("Dir", 1); }
+            else if ((transform.position - currentWaypoint).normalized == new Vector3(1, 0, 0)) { animator.SetInteger("Dir", 2); }
+            else if ((transform.position - currentWaypoint).normalized == new Vector3(0, -1, 0)) { animator.SetInteger("Dir", 3); }
             yield return null;                                                                                      //Wait one frame and continue.
         }
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);                                    //Request a new path.
@@ -76,7 +85,17 @@ public class Unit : MonoBehaviour {
     }
 
     public void PowerPelletActive() {
+        StartCoroutine(RunAway());
+    }
+
+    IEnumerator RunAway() {
         targetTransform.position = pathfinding.FindFurthestNode(player.transform.position).worldPos;
         target = targetTransform;
+        animator.SetInteger("BlueMode", 1);
+        yield return new WaitForSeconds(blueModeDur * 0.75f);
+        animator.SetInteger("BlueMode", 2);
+        yield return new WaitForSeconds(blueModeDur * 0.25f);
+        animator.SetInteger("BlueMode", 0);
+        target = player.transform;
     }
 }
