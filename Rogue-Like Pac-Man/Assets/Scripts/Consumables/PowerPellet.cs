@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PowerPellet : Consumable {
 
-    public delegate void PowerPelletAction();
-    public static event PowerPelletAction OnPowerPelletEaten;
-
     private void Start() {
         itemType = "powerPellet";
         pointValue = 50;
@@ -14,7 +11,6 @@ public class PowerPellet : Consumable {
 
     public override void OnPelletEaten() {
         base.OnPelletEaten();
-        if (OnPowerPelletEaten != null)
-            OnPowerPelletEaten();
+        EventManager.Instance.OnPowerPelletEaten();
     }
 }

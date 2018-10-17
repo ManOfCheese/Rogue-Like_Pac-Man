@@ -6,12 +6,18 @@ public class Unit : MonoBehaviour {
 
     public Pathfinding pathfinding;
     public Transform targetTransform;
+    public Vector3 cagePos;
     public float speed;       //Speed of movement, later multiplied by time.DeltaTime
-    public int blueModeDur;
+    private int blueModeDur = 8;
+    private int respawnTime = 10;
+    private bool isEaten = false;
 
     private Animator animator;
     private GameObject player;
     private Transform target;  //The target to move towards.
+
+    private float blueModeTimer;
+    private bool blueModeActive;
 
     Vector3[] path;           //The path in an array of Vector3's.
     int targetIndex;          //The current index of the waypoint we are moving to towards.
@@ -24,11 +30,11 @@ public class Unit : MonoBehaviour {
     }
 
     private void OnEnable() {
-        PowerPellet.OnPowerPelletEaten += PowerPelletActive;
+        EventManager.BlueMode += BlueModeActive;
     }
 
     private void OnDisable() {
-        PowerPellet.OnPowerPelletEaten -= PowerPelletActive;
+        EventManager.BlueMode -= BlueModeActive;
     }
 
     //When a path is returned from the PathRequestManager.
@@ -84,18 +90,47 @@ public class Unit : MonoBehaviour {
         }
     }
 
-    public void PowerPelletActive() {
+    public void BlueModeActive() {
         StartCoroutine(RunAway());
+        blueModeActive = true;
+    }
+
+    public void OnGhostEaten() {
+        target.position = cagePos;
+        isEaten = true;
+        animator.SetBool("Dead", true);
+        animator.SetInteger("BlueMode", 0);
+        StartCoroutine(RespawnTimer());
     }
 
     IEnumerator RunAway() {
         targetTransform.position = pathfinding.FindFurthestNode(player.transform.position).worldPos;
         target = targetTransform;
         animator.SetInteger("BlueMode", 1);
-        yield return new WaitForSeconds(blueModeDur * 0.75f);
-        animator.SetInteger("BlueMode", 2);
         yield return new WaitForSeconds(blueModeDur * 0.25f);
-        animator.SetInteger("BlueMode", 0);
+        targetTransform.position = pathfinding.FindFurthestNode(player.transform.position).worldPos;
+        yield return new WaitForSeconds(blueModeDur * 0.25f);
+        targetTransform.position = pathfinding.FindFurthestNode(player.transform.position).worldPos;
+        yield return new WaitForSeconds(blueModeDur * 0.25f);
+        if (isEaten == false) {
+            targetTransform.position = pathfinding.FindFurthestNode(player.transform.position).worldPos;
+            animator.SetInteger("BlueMode", 2);
+        }
+        yield return new WaitForSeconds(blueModeDur * 0.25f);
+        if (isEaten == false) {
+            targetTransform.position = pathfinding.FindFurthestNode(player.transform.position).worldPos;
+            animator.SetInteger("BlueMode", 0);
+            target = player.transform;
+            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+            EventManager.Instance.OnBlueModeEnd();
+        }
+    }
+
+    IEnumerator RespawnTimer() {
+        yield return new WaitForSeconds(respawnTime);
+        animator.SetBool("Dead", false);
         target = player.transform;
+        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        isEaten = false;
     }
 }

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
 
     public int score;
     public Text scoreText;
+    public int ghostEatMultiplier;
 
     private void Update() {
         scoreText.text = "Score: " + score;
