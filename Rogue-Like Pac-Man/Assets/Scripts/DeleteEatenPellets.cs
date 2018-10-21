@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class DeleteEatenPellets : MonoBehaviour {
 
-	// Use this for initialization
 	void Start () {
-        foreach (string pellet in GameManager.Instance.eatenPellets) {
-            Destroy(GameObject.Find(pellet));
+        foreach (string pellet in GameManager.Instance.EatenPellets) {  
+            Destroy(GameObject.Find(pellet));  //Delete every pellet in the list of eaten pellets in the GameManager.
         }
-        foreach (string powerPellet in GameManager.Instance.eatenPowerPellets) {
-            Destroy(GameObject.Find(powerPellet));
+        foreach (string powerPellet in GameManager.Instance.EatenPowerPellets) {
+            Destroy(GameObject.Find(powerPellet));  //Do the same for the power pellets.
         }
     }
 }

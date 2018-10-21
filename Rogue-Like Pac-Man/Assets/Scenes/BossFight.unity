@@ -401,6 +401,61 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 32, y: 2}
   m_EdgeRadius: 0
+--- !u!1 &334546938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 334546940}
+  - component: {fileID: 334546939}
+  m_Layer: 0
+  m_Name: Updater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &334546939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 334546938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79b12f668422ff4d89eb599ca54d1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossManager: {fileID: 1547864757}
+  playercontroller: {fileID: 601868247}
+  units:
+  - {fileID: 1165121600}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  openDoor: {fileID: 0}
+--- !u!4 &334546940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 334546938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.18859169, y: 0.14777629, z: -0.19921875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &601868247 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114285836906703272, guid: a47c2cb32b5d389449ce7192d0d8d4cd,
+    type: 2}
+  m_PrefabInternal: {fileID: 777765197}
+  m_Script: {fileID: 11500000, guid: 5484eb0014e0470429a3b4367a211c36, type: 3}
 --- !u!1 &737451841
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +539,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &777765197
 Prefab:
@@ -523,7 +578,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4621713466655204, guid: a47c2cb32b5d389449ce7192d0d8d4cd, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1626088177892512, guid: a47c2cb32b5d389449ce7192d0d8d4cd, type: 2}
       propertyPath: m_Name
@@ -591,8 +646,14 @@ Transform:
   - {fileID: 1727327286}
   - {fileID: 294818481}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1165121600 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114818163646632336, guid: cf36068fcfdc00c4ea422458e1207907,
+    type: 2}
+  m_PrefabInternal: {fileID: 2123832236}
+  m_Script: {fileID: 11500000, guid: 0295ce43c1bca9c459a1dca75c97fd3b, type: 3}
 --- !u!1 &1547864756
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea4efe78770efe4588c866f076d5194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossPelletsEaten: 0
+  updater: {fileID: 334546939}
   ultraPowerPellet: {fileID: 1033342958856544, guid: b2854e3a775cf9b4d955e742f0ce0e33,
     type: 2}
   inky: {fileID: 1226340841650136, guid: 5220020ee84f0cd40b361e77bfa1376b, type: 2}
@@ -642,7 +703,7 @@ MonoBehaviour:
   pools:
   - tag: Pellet
     prefab: {fileID: 1411669187241342, guid: de4d47d0eb7bc6a4cabf10cb10579228, type: 2}
-    size: 300
+    size: 200
 --- !u!4 &1547864759
 Transform:
   m_ObjectHideFlags: 0
@@ -2176,7 +2237,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2123832236
 Prefab:
@@ -2254,34 +2315,15 @@ Prefab:
       propertyPath: pathfinding
       value: 
       objectReference: {fileID: 2042288209}
+    - target: {fileID: 1871541495476806, guid: cf36068fcfdc00c4ea422458e1207907, type: 2}
+      propertyPath: m_Name
+      value: BossGhost
+      objectReference: {fileID: 0}
+    - target: {fileID: 114818163646632336, guid: cf36068fcfdc00c4ea422458e1207907,
+        type: 2}
+      propertyPath: Speed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf36068fcfdc00c4ea422458e1207907, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &2143442972
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2143442973}
-  m_Layer: 0
-  m_Name: BossGhost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2143442973
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2143442972}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.1099606, y: 3.6173782, z: -0.234375}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

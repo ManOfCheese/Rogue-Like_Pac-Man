@@ -4,36 +4,43 @@ using UnityEngine;
 
 public class Ghost : Consumable {
 
-    private bool blueMode;
-    private Unit unit;
-    private AudioSource audioSource;
+    private Unit unit;                //Reference to unit.
+    private AudioSource audioSource;  //Reference to audioSource.
 
+
+    //Initialize variables.
     private void Start() {
-        itemType = "ghost";
-        pointValue = 200;
-        unit = GetComponent<Unit>();
-        audioSource = GetComponent<AudioSource>();
+        pointValue = 200;                           //Set the pointValue to 200.
+        unit = GetComponent<Unit>();                //Get Unit.
+        audioSource = GetComponent<AudioSource>();  //Get AudioSource.
     }
 
+
+    //When this script is enabled.
     private void OnEnable() {
-        EventManager.EndBlueMode += BlueModeEnd;
+        EventManager.EndBlueMode += BlueModeEnd;  //Subscribe BlueModeEnd to the EndBlueMode event.
     }
 
+
+    //When this script is disabled.
     private void OnDisable() {
-        EventManager.EndBlueMode -= BlueModeEnd;
+        EventManager.EndBlueMode -= BlueModeEnd;  //Unsubscribe BlueModeEnd from the EndBlueMode event.
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (enabled && collision.gameObject.tag == "Player") {
-            unit = this.GetComponent<Unit>();
-            audioSource.Play();
-            GameManager.Instance.ghostEatMultiplier *= 2;
-            GameManager.Instance.score += pointValue * GameManager.Instance.ghostEatMultiplier;
-            unit.OnGhostEaten();
+        if (enabled && collision.gameObject.tag == "Player") {  //If we collide with the player and this script is enabled.
+            unit = this.GetComponent<Unit>();                                                    //Get unit.
+            audioSource.Play();                                                                  //Play ghostChomp sound.
+            GameManager.Instance.GhostEatMultiplier *= 2;                                        //Double the ghost multiplier.
+            GameManager.Instance.Score += pointValue * GameManager.Instance.GhostEatMultiplier;  //Add the pointvalue x the ghost multiplier to our score.
+            unit.OnGhostEaten();                                                                 //Call the OnGhostEaten function on our unit.
         }   
     }
 
+
+    //When blue mode is over.
     public void BlueModeEnd() {
-        GameManager.Instance.ghostEatMultiplier = 1;
+        GameManager.Instance.GhostEatMultiplier = 1;  //Reset the ghost multiplier.
     }
 }

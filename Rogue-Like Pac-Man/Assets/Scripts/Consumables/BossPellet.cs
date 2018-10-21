@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class BossPellet : Consumable {
 
-    private BossManager bossManager;
+    private BossManager bossManager;  //Reference to the BossManager.
 
+
+    //Initialize Variables.
     private void Start() {
-        itemType = "bossPellet";
-        pointValue = 10;
-        bossManager = GameObject.Find("ObjectPooler").GetComponent<BossManager>();
+        pointValue = 10;                                                            //Set the pointValue of the pellet.
+        bossManager = GameObject.Find("ObjectPooler").GetComponent<BossManager>();  //Get the BossManager.
     }
 
+
+    //When this pellet is eaten.
     public override void OnPelletEaten() {
-        base.OnPelletEaten();
-        bossManager.bossPelletsEaten++;
+        base.OnPelletEaten();            //Excute the base from the Consumable Class.
+        bossManager.BossPelletsEaten++;  //Add one to BossPelletsEaten in the BossManager.
     }
 }

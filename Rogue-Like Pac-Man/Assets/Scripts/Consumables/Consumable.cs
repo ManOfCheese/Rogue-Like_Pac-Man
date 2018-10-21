@@ -4,17 +4,19 @@ using UnityEngine;
 
 public abstract class Consumable : MonoBehaviour {
 
-    protected string itemType;
-    protected int pointValue;
+    protected int pointValue;  //pointValue of consumable.
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Player") {
-            OnPelletEaten();
+
+    private void OnTriggerEnter2D(Collider2D collision) {  
+        if (collision.gameObject.tag == "Player") {  //When colliding with pacman.
+            OnPelletEaten();                         //Excute this functiion.
         }
     }
 
+
+    //Happens when we are eaten.
     public virtual void OnPelletEaten() {
-        GameManager.Instance.score += pointValue;
-        Destroy(this.gameObject);
+        GameManager.Instance.Score += pointValue;  //Add the pointValue to the score.
+        Destroy(this.gameObject);                  //Kill yourself.
     }
 }
