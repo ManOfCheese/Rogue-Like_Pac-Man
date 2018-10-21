@@ -25,12 +25,19 @@ namespace StateMachine {
                 CurrentState.UpdateState(Owner);
             }
         }
+
+        public void UpdateTarget() {
+            if (CurrentState != null) {
+                CurrentState.UpdateTarget(Owner);
+            }
+        }
     }
 
     public abstract class State<T> {
         public abstract void EnterState(T _owner);
         public abstract void ExitState(T _owner);
         public abstract void UpdateState(T _owner);
+        public abstract void UpdateTarget(T _owner);
     }
 }
 

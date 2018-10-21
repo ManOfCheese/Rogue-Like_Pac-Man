@@ -6,36 +6,34 @@ public class Ghost : Consumable {
 
     private bool blueMode;
     private Unit unit;
+    private AudioSource audioSource;
 
     private void Start() {
         itemType = "ghost";
         pointValue = 200;
         unit = GetComponent<Unit>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable() {
-        EventManager.BlueMode += BlueModeActive;
         EventManager.EndBlueMode += BlueModeEnd;
     }
 
     private void OnDisable() {
-        EventManager.BlueMode -= BlueModeActive;
         EventManager.EndBlueMode -= BlueModeEnd;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (blueMode == true) {
+        if (enabled && collision.gameObject.tag == "Player") {
+            unit = this.GetComponent<Unit>();
+            audioSource.Play();
             GameManager.Instance.ghostEatMultiplier *= 2;
             GameManager.Instance.score += pointValue * GameManager.Instance.ghostEatMultiplier;
             unit.OnGhostEaten();
-        }
-    }
-
-    public void BlueModeActive() {
-        blueMode = true;
+        }   
     }
 
     public void BlueModeEnd() {
-        blueMode = false;
+        GameManager.Instance.ghostEatMultiplier = 1;
     }
 }

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212126358353648014}
   - component: {fileID: 95957316101764628}
   - component: {fileID: 58804611639498114}
+  - component: {fileID: 114647328910039252}
   m_Layer: 0
   m_Name: UltraPellet
   m_TagString: Untagged
@@ -51,7 +52,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -75,6 +76,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114647328910039252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1033342958856544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1474d4a3e324345bb570733786a57f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212126358353648014
 SpriteRenderer:
   m_ObjectHideFlags: 1

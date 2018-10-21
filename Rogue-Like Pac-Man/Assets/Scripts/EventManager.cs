@@ -22,6 +22,12 @@ public class EventManager : MonoBehaviour {
     public delegate void EndOfBlueModeAction();
     public static event EndOfBlueModeAction EndBlueMode;
 
+    public delegate void PacManDeathAction();
+    public static event PacManDeathAction PacManDeath;
+
+    public delegate void UltraPowerPelletAction();
+    public static event UltraPowerPelletAction UltraPellet;
+
     public void OnPowerPelletEaten() {
         if (BlueMode != null)
             BlueMode();
@@ -30,5 +36,17 @@ public class EventManager : MonoBehaviour {
     public void OnBlueModeEnd() {
         if (EndBlueMode != null)
             EndBlueMode();
+    }
+
+    public void OnPacManDeath() {
+        if (PacManDeath != null) {
+            PacManDeath();
+        }
+    }
+
+    public void OnUltraPelletEat() {
+        if (UltraPellet != null) {
+            UltraPellet();
+        }
     }
 }

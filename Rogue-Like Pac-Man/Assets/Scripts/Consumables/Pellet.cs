@@ -10,6 +10,7 @@ public class Pellet : Consumable {
     }
 
     public override void OnPelletEaten() {
+        GameManager.Instance.eatenPellets.Add(this.name);
         base.OnPelletEaten();
     }
 }

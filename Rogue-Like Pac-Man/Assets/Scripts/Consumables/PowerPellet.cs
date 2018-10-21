@@ -10,6 +10,7 @@ public class PowerPellet : Consumable {
     }
 
     public override void OnPelletEaten() {
+        GameManager.Instance.eatenPowerPellets.Add(this.name);
         base.OnPelletEaten();
         EventManager.Instance.OnPowerPelletEaten();
     }

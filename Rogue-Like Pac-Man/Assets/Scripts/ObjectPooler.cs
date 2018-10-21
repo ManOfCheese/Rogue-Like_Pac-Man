@@ -11,24 +11,12 @@ public class ObjectPooler : MonoBehaviour {
         public int size;
     }
 
-    private static ObjectPooler _instance;
-
-    public static ObjectPooler Instance {
-        get {
-            if (_instance == null) {
-                _instance = GameObject.FindObjectOfType<ObjectPooler>();
-            }
-
-            return _instance;
-        }
-    }
-
     public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> pelletPool;
+    public Dictionary<string, Queue<GameObject>> objectPools;
 
 	// Use this for initialization
 	void Start () {
-		pelletPool = new Dictionary<string, Queue<GameObject>>();
+		objectPools = new Dictionary<string, Queue<GameObject>>();
 
         foreach (Pool pool in pools) {
             Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -38,22 +26,22 @@ public class ObjectPooler : MonoBehaviour {
                 objectPool.Enqueue(obj);
             }
 
-            pelletPool.Add(pool.tag, objectPool);
+            objectPools.Add(pool.tag, objectPool);
         }
 	}
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Vector3 scale) {
-        if (!pelletPool.ContainsKey(tag)) {
+        if (!objectPools.ContainsKey(tag)) {
             Debug.Log("Pool with tag " + tag + " doesn't exist");
             return null;
         }
-        GameObject objectToSpawn = pelletPool[tag].Dequeue();
+        GameObject objectToSpawn = objectPools[tag].Dequeue();
 
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.localScale = scale;
 
-        pelletPool[tag].Enqueue(objectToSpawn);
+        objectPools[tag].Enqueue(objectToSpawn);
         return objectToSpawn;
     }
 }
