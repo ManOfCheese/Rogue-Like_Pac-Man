@@ -10,8 +10,8 @@ public class Grid : MonoBehaviour {
     public float nodeRadius;          //The radius of the node determines it's size.
     public Node[,] grid;             //An array of all the nodes in the grid.
 
-    float nodeDiameter;               //Simply twice the radius, declared here for quick reusability in favour of multiplying nodeRadius each time.
-    int gridSizeX, gridSizeY;         //Holds how many nodes fit in the grid on the x and y axes. 
+    private float nodeDiameter;               //Simply twice the radius, declared here for quick reusability in favour of multiplying nodeRadius each time.
+    private int gridSizeX, gridSizeY;         //Holds how many nodes fit in the grid on the x and y axes. 
 
     public int MaxSize {              //Holds the maximum size of the grid.
         get {
